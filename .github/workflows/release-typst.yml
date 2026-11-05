@@ -22,13 +22,21 @@ jobs:
       - name: Compile PDF
         run: |
           mkdir -p dist
-          typst compile src/main.typ dist/main.pdf
+          
+          # Recursively find all main.typ files inside subfolders of src/
+          find src -name "main.typ" | while read -r file; do
+            # Extract the immediate parent directory name of the main.typ file
+            subfolder=$(basename "$(dirname "$file")")
+            
+            echo "Compiling: $file -> dist/${subfolder}.pdf"
+            typst compile "$file" "dist/${subfolder}.pdf"
+          done
 
       - name: Create or update release
         uses: ncipollo/release-action@v1
         with:
           tag: release
           name: Release
-          allowUpdates: true
-          replacesArtifacts: true
-          artifacts: dist/main.pdf
+          allowUpdates: false
+          replacesArtifacts: false
+          artifacts: dist/*.pdf
