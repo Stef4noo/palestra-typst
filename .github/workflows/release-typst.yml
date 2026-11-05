@@ -19,6 +19,14 @@ jobs:
       - name: Setup Typst
         uses: typst-community/setup-typst@v3
 
+      - name: Generate Timestamp
+        id: timestamp
+        run: |
+          # Generate a clean timestamp (e.g., 2026-11-05_21-25-00)
+          TIMESTAMP=$(date -u +"%Y-%m-%d_%H-%M-%S")
+          echo "TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+          echo "tag=release-$TIMESTAMP" >> $GITHUB_OUTPUT
+
       - name: Compile PDF
         run: |
           mkdir -p dist
