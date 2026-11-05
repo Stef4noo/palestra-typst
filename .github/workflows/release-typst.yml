@@ -1,0 +1,34 @@
+name: Build and release Typst PDF
+
+on:
+  push:
+    branches:
+      - release
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v3
+
+      - name: Compile PDF
+        run: |
+          mkdir -p dist
+          typst compile src/main.typ dist/main.pdf
+
+      - name: Create or update release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: release
+          name: Release
+          allowUpdates: true
+          replacesArtifacts: true
+          artifacts: dist/main.pdf
