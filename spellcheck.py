@@ -2,6 +2,7 @@
 import os
 import re
 import sys
+import string
 from spellchecker import SpellChecker
 
 def main():
@@ -32,14 +33,20 @@ def main():
                 content = re.sub(r'//.*', '', content)
                 content = re.sub(r'/\*.*?\*/', '', flags=re.DOTALL, string=content)
 
-                # Extract words, including Italian accented characters (à, è, é, ì, ò, ù)
-                words = re.findall(r'\b[a-zA-ZàèéìòùÀÈÉÌÒÙ]+\b', content)
+                # Extract words properly:
+                # 1. Matches Italian words including accented characters
+                raw_words = re.findall(r'\b[a-zA-ZàèéìòùÀÈÉÌÒÙ]+\b', content)
 
-                # Filter out short words (length <= 2) to avoid false triggers on code/variables
-                words = [w.lower() for w in words if len(w) > 2]
+                # 2. Clean each word: remove any leftover punctuation and convert to lowercase
+                clean_words = []
+                for w in raw_words:
+                    word_clean = w.strip(string.punctuation).lower()
+                    # Filter out short tokens (<= 2 chars) like variables, math symbols, or acronyms
+                    if len(word_clean) > 2:
+                        clean_words.append(word_clean)
 
-                # Find misspelled words
-                misspelled = spell.unknown(words)
+                # Find misspelled words against the Italian dictionary
+                misspelled = spell.unknown(clean_words)
 
                 if misspelled:
                     print(f"::error file={filepath}::Potential Italian spelling errors found:")
