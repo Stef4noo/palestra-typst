@@ -1,0 +1,27 @@
+name: Italian Spell Check
+
+on:
+  pull_request:
+    branches: [ main, release ]
+  push:
+    branches: [ main ]
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyspellchecker
+
+      - name: Run Italian Spell Check Script
+        run: |
+          python spellcheck.py
