@@ -35,8 +35,8 @@ jobs:
       - name: Create or update release
         uses: ncipollo/release-action@v1
         with:
-          tag: release
-          name: Release
+          tag: ${{ steps.timestamp.outputs.tag }}
+          name: Release ${{ env.TIMESTAMP }}
           allowUpdates: false
           replacesArtifacts: false
           artifacts: dist/*.pdf
