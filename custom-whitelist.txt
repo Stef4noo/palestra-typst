@@ -48,5 +48,9 @@ rgb
 luma
 cmyk
 hex
+doctitle
+lorem
+partecipants
+typ
 # Termini del progetto
 WoW
