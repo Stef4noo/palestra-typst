@@ -6,15 +6,17 @@ import string
 from spellchecker import SpellChecker
 
 def main():
-    # Initialize the spellchecker for Italian
-    spell = SpellChecker(language='it')
+    # Initialize spell checkers for both Italian and English
+    spell_it = SpellChecker(language='it')
+    spell_en = SpellChecker(language='en')
 
-    # Optional: Load custom whitelist terms if the file exists
+    # Load custom whitelist terms if the file exists
     whitelist_file = 'custom-whitelist.txt'
     if os.path.exists(whitelist_file):
         with open(whitelist_file, 'r', encoding='utf-8') as f:
             custom_words = [line.strip().lower() for line in f if line.strip() and not line.startswith('#')]
-            spell.word_frequency.load_words(custom_words)
+            spell_it.word_frequency.load_words(custom_words)
+            spell_en.word_frequency.load_words(custom_words)
 
     failed = False
 
@@ -33,23 +35,23 @@ def main():
                 content = re.sub(r'//.*', '', content)
                 content = re.sub(r'/\*.*?\*/', '', flags=re.DOTALL, string=content)
 
-                # Extract words properly:
-                # 1. Matches Italian words including accented characters
+                # Extract words, including Italian accented characters
                 raw_words = re.findall(r'\b[a-zA-ZàèéìòùÀÈÉÌÒÙ]+\b', content)
 
-                # 2. Clean each word: remove any leftover punctuation and convert to lowercase
+                # Clean words: remove punctuation, lowercase, filter out short tokens (<= 2 chars)
                 clean_words = []
                 for w in raw_words:
                     word_clean = w.strip(string.punctuation).lower()
-                    # Filter out short tokens (<= 2 chars) like variables, math symbols, or acronyms
                     if len(word_clean) > 2:
                         clean_words.append(word_clean)
 
-                # Find misspelled words against the Italian dictionary
-                misspelled = spell.unknown(clean_words)
+                # Find words unknown to BOTH dictionaries
+                unknown_it = spell_it.unknown(clean_words)
+                unknown_en = spell_en.unknown(clean_words)
+                misspelled = unknown_it.intersection(unknown_en)
 
                 if misspelled:
-                    print(f"::error file={filepath}::Potential Italian spelling errors found:")
+                    print(f"::error file={filepath}::Potential spelling errors found (IT/EN):")
                     for word in sorted(misspelled):
                         print(f"  - {word}")
                     failed = True

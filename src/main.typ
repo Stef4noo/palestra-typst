@@ -1,10 +1,22 @@
-#set page(margin: 1in)
+#import "template_verbale.typ": *
 
-= Hello, World!
+#show: template.with(
+  doctitle: [Verbale interno della riunione del 2026-11-05],
+  writer: "ciao",
+  partecipants: ("banana",)
+)
 
-Ho aggiunto delle cose a caso.
+= Ciao
+#lorem(50)
+== Come stai?
+#lorem(50)
+=== Terzo livello
+#lorem(50)
+==== Quarto livello
+===== Quinto
+====== Sesto
 
-Altre cose senza senso #underline(stroke: 1.2pt + gradient.linear(..color.map.rainbow))[tipo questa]
+= altro
+#lorem(50)
 
-Frase senza errori.
-Frase con errrori
+#firma
