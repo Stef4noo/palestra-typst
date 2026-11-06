@@ -1,4 +1,4 @@
-name: Italian Spell Check
+name: Hunspell
 
 on:
   workflow_dispatch:
