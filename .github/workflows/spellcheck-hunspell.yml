@@ -1,0 +1,56 @@
+name: Italian Spell Check
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main, release ]
+  push:
+    branches: [ main ]
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Hunspell and Italian Dictionary
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hunspell hunspell-it
+
+      - name: Run Italian Spell Check on Typst files
+        run: |
+          # Create a custom word whitelist file if you have project-specific
+          # acronyms, technical terms, or names that aren't in the Italian dictionary.
+          # Create it empty for now:
+          touch custom-whitelist.txt
+
+          # Find all .typ files and check them
+          # Note: We filter out markup control codes or standard typst commands if needed,
+          # or run hunspell directly on text contents.
+          FAILED=0
+
+          while IFS=read -r file; do
+            echo "Checking spelling for: $file"
+
+            # Run hunspell against the file (-d it_IT specifies Italian)
+            # -l outputs only the misspelled words
+            # We strip common typst markup lines or symbols if they cause false positives,
+            # or check plain text extraction.
+            errors=$(hunspell -d it_IT -l "$file" | sort -u)
+
+            if [ -n "$errors" ]; then
+              echo "::error file=$file::Potential spelling mistakes found in $file:"
+              echo "$errors"
+              # Filter out words present in custom-whitelist.txt if any
+              FAILED=1
+            fi
+          done < <(find src -name "*.typ")
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo "Spell check failed! Please fix the spelling mistakes or add valid technical terms to custom-whitelist.txt."
+            exit 1
+          else
+            echo "Spell check passed successfully!"
+          fi
