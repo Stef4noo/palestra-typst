@@ -1,0 +1,7 @@
+{
+    "language": "en,it",
+    "ignorePaths": [
+        ".git",
+        "**/template_*.typ"
+    ]
+}
