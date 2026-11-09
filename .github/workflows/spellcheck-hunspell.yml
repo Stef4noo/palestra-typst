@@ -20,10 +20,7 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Install CSpell and Italian Dictionary
-        run: |
-          npm install cspell @cspell/dict-it-it
-
-      - name: Run CSpell
-        run: |
-          npx cspell "**/*.typ" "!**/template_*.typ"
+      - name: Check spelling with CSpell
+        uses: streetsidesoftware/cspell-action@v6
+        with:
+          config: 'cspell.json'

@@ -1,13 +1,10 @@
 {
     "version": "0.2",
-    "language": "it,en",
+    "language": "en,it",
     "dictionaries": [
         "italian",
         "en-gb",
         "en-us"
-    ],
-    "imports": [
-        "@cspell/dict-it-it/cspell-ext.json"
     ],
     "ignorePaths": [
         ".git",
