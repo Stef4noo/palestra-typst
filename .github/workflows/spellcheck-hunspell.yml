@@ -5,7 +5,6 @@ on:
     branches: [ main, master, develop ]
   pull_request:
     branches: [ main, master, develop ]
-  # Permette l'avvio manuale dalla scheda "Actions" di GitHub
   workflow_dispatch:
 
 jobs:
@@ -21,7 +20,10 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Install CSpell and Italian Dictionary
+        run: |
+          npm install cspell @cspell/dict-it-it
+
       - name: Run CSpell
         run: |
-          npm install -g cspell @cspell/dict-it-it
-          npx cspell "**/*.typ"
+          npx cspell "**/*.typ" "!**/template_*.typ"
