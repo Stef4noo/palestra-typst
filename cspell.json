@@ -3,7 +3,7 @@
     "import": [
         "https://cdn.jsdelivr.net/npm/@cspell/dict-it-it@3/cspell-ext.json"
     ],
-    "language": "it, it-IT, en",
+    "language": "it, it-IT, en-GB, en-US",
     "dictionaries": [
         "italian",
         "en-gb",
@@ -15,12 +15,19 @@
         "cspell.json"
     ],
     "words": [
-        "typst",
+        "Biba",
         "changelog",
+        "doctitle",
         "Gyulai",
-        "Tuoni",
-        "Sironi",
+        "Lucchi",
+        "meetingplace",
+        "meetingtime",
         "Moro",
-        "Biba"
+        "pagebreak",
+        "Sironi",
+        "Tuoni",
+        "typst",
+        "Vardanega",
+        "versionamento"
     ]
 }
