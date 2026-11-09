@@ -24,5 +24,7 @@ jobs:
         uses: streetsidesoftware/cspell-action@v6
         with:
           config: 'cspell.json'
-          files: '**/*.typ'
           suggestions: true
+          files: |
+            **/*.typ
+            !**/template_*.typ          
