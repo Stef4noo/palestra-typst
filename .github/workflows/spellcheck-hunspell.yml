@@ -27,4 +27,13 @@ jobs:
           suggestions: true
           files: |
             **/*.typ
-            !**/template_*.typ          
+            !**/template_*.typ         
+
+      - name: Run CSpell explicitly
+        run: |
+          # Stampa i file trovati per debug visivo nei log di GitHub
+          echo "=== File .typ trovati nella repository ==="
+          find . -name "*.typ"
+          
+          echo "=== Esecuzione CSpell ==="
+          npx cspell "**/*.typ" "!**/template_*.typ" --config cspell.json
