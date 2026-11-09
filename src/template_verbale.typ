@@ -21,7 +21,7 @@
 #let firma = {
   v(1.2cm)
   align(right)[
-    _Firma del proponente_
+    _Firma della proponente_
     \ \
     #line(length: 7cm)
   ]

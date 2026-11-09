@@ -100,5 +100,3 @@ Infine, è stata discussa l’adozione di un sistema di tracciamento delle Issue
   [Giacomo De Lucchi],
   [2026/11/09],
 )
-
-#firma
