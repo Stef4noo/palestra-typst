@@ -24,17 +24,17 @@ jobs:
         uses: streetsidesoftware/cspell-action@v6
         with:
           config: 'cspell.json'
-          incremental_files_only: false
+          incremental_files_only: false #solo per debug
           suggestions: true
           files: |
             **/*.typ
             !**/template_*.typ         
 
-      - name: Run CSpell explicitly
-        run: |
-          # Stampa i file trovati per debug visivo nei log di GitHub
-          echo "=== File .typ trovati nella repository ==="
-          find . -name "*.typ"
+      # - name: Run CSpell explicitly
+      #   run: |
+      #     # Stampa i file trovati per debug visivo nei log di GitHub
+      #     echo "=== File .typ trovati nella repository ==="
+      #     find . -name "*.typ"
           
-          echo "=== Esecuzione CSpell ==="
-          npx cspell "**/*.typ" "!**/template_*.typ" --config cspell.json
+      #     echo "=== Esecuzione CSpell ==="
+      #     npx cspell "**/*.typ" "!**/template_*.typ" --config cspell.json

@@ -50,7 +50,7 @@ cmyk
 hex
 doctitle
 lorem
-partecipants
+participants
 typ
 # Termini del progetto
 WoW

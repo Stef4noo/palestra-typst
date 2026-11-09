@@ -52,7 +52,7 @@
   meetingplace: "",
   meetingtime: "",
   // Stringa dei partecipanti separati da virgola ESCLUSO il redattore
-  partecipants: "",
+  participants: "",
   body,
 ) = {
   // Impostazioni comuni per tutto
@@ -105,7 +105,7 @@
     / Luogo: #meetingplace
     / Redattore del verbale: #writer.
     / Partecipanti: 
-      #for person in partecipants.split(",") [
+      #for person in participants.split(",") [
         - #person.trim(),
       ]
       - #writer.

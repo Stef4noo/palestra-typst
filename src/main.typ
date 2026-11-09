@@ -49,7 +49,7 @@
   writer: "Michele Moro",
   meetingplace: "Discord",
   meetingtime: "21:00 - 22:15",
-  partecipants: "Giacomo de Lucchi, Costanza Gyulai, Stefano Sironi, Angelo Tuoni, Yi Ming Ye, Giovanni Biba",
+  participants: "Giacomo de Lucchi, Costanza Gyulai, Stefano Sironi, Angelo Tuoni, Yi Ming Ye, Giovanni Biba",
 )
 
 = Ordine del giorno
