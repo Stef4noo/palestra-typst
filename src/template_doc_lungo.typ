@@ -55,6 +55,14 @@
   )
   pagebreak()
 
+  // Per il changelog e l'indice non voglio il numero di pagina
+  set page(
+    footer: image(
+      "logo alt footer.jpg",
+      width: 4cm,
+    ),
+  )
+
   // Changelog
   table(
     columns: 5,
@@ -76,8 +84,7 @@
       grid(
         columns: (1fr, auto),
         align: (left + horizon, right + horizon),
-        image("logo alt footer.jpg"),
-        [#page]
+        image("logo alt footer.jpg", width: 4cm), [#page],
       )
     },
   )
