@@ -1,5 +1,5 @@
 {
-    "language": "en,it",
+    "language": "it,en",
     "imports": [
         "@cspell/dict-it-it/cspell-ext.json"
     ],
