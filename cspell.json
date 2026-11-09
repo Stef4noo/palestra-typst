@@ -14,6 +14,9 @@
         "**/template_*.typ",
         "cspell.json"
     ],
+    "ignoreRegExpList": [
+        "#[a-zA-Z0-9_]+"
+    ],
     "words": [
         "Biba",
         "changelog",

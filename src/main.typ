@@ -52,6 +52,9 @@
   participants: "Giacomo de Lucchi, Costanza Gyulai, Stefano Sironi, Angelo Tuoni, Yi Ming Ye, Giovanni Biba",
 )
 
+hello
+helllo
+
 = Ordine del giorno
 + Revisione del preventivo dei costi e dichiarazione di impegni.
 + Revisione di tutti i verbali.
