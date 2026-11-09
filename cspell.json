@@ -11,6 +11,9 @@
         "**/template_*.typ",
         "cspell.json"
     ],
+    "files": [
+        "**/*.typ"
+    ],
     "words": [
         "typst",
         "changelog",
