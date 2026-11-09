@@ -2,6 +2,7 @@
     "language": "en,it",
     "ignorePaths": [
         ".git",
-        "**/template_*.typ"
+        "**/template_*.typ",
+        "cspell.json"
     ]
 }
