@@ -1,6 +1,9 @@
 {
     "version": "0.2",
-    "language": "en,it",
+    "import": [
+        "https://cdn.jsdelivr.net/npm/@cspell/dict-it-it@3/cspell-ext.json"
+    ],
+    "language": "it, it-IT, en",
     "dictionaries": [
         "italian",
         "en-gb",
