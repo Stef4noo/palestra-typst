@@ -1,4 +1,4 @@
-name: Check Spelling
+name: Check Spelling Node
 
 on:
   push:
@@ -23,4 +23,5 @@ jobs:
 
       - name: Run CSpell
         run: |
+          npm install -g cspell @cspell/dict-it-it
           npx cspell "**/*.typ"

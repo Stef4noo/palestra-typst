@@ -1,8 +1,20 @@
 {
     "language": "en,it",
+    "imports": [
+        "@cspell/dict-it-it/cspell-ext.json"
+    ],
     "ignorePaths": [
         ".git",
         "**/template_*.typ",
         "cspell.json"
+    ],
+    "words": [
+        "typst",
+        "changelog",
+        "Gyulai",
+        "Tuoni",
+        "Sironi",
+        "Moro",
+        "Biba"
     ]
 }
