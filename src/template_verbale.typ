@@ -21,18 +21,41 @@
 #let firma = {
   v(1.2cm)
   align(right)[
-    _Firma di approvazione del proponente_
-    \ \ 
+    _Firma del proponente_
+    \ \
     #line(length: 7cm)
   ]
 }
 
+#let changelog(body) = {
+  table(
+    columns: 5,
+    table.header([Versione], [Data], [Descrizione], [Autore], [Verificatore]),
+    ..body,
+  )
+}
+
+#let todos(..body) = {
+  [= Azioni pianificate]
+
+  table(
+    columns: 5,
+    table.header([\# Issue], [Decisione], [Azione], [Incaricato/i], [Scadenza]),
+    ..body,
+  )
+}
+
 #let template(
   doctitle: "",
-  writer: "",
-  partecipants: (),
+  // Redattore del documento
+  writer: ("",),
+  meetingplace: "",
+  meetingtime: "",
+  // Stringa dei partecipanti separati da virgola ESCLUSO il redattore
+  partecipants: "",
   body,
 ) = {
+  // Impostazioni comuni per tutto
   show title: set text(size: 21pt)
   set heading(numbering: "1.1.1.")
   set text(
@@ -41,7 +64,17 @@
   )
   set document(
     title: doctitle,
-    author: ((writer,) + partecipants),
+    author: (writer,),
+  )
+  show table.cell.where(y: 0): strong
+  set table(
+    align: top + left,
+    stroke: 0.6pt + rgb("#3e3c3c"),
+    fill: (col, row) => if row == 0 { rgb("#c7c3c3") } else { none },
+  )
+  set terms(
+    tight: true,
+    separator: [: ],
   )
 
   // Prima pagina con titolo e versionamento
@@ -65,6 +98,18 @@
     number-align: right,
   )
   counter(page).update(1)
+
+  [= Dettagli organizzativi]
+  [
+    / Orario: #meetingtime
+    / Luogo: #meetingplace
+    / Redattore del verbale: #writer.
+    / Partecipanti: 
+      #for person in partecipants.split(",") [
+        - #person.trim(),
+      ]
+      - #writer.
+  ]
   body
 }
 
